@@ -1,0 +1,82 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: myapp
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: myapp
+  name: deployment-lua
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-lua
+  template:
+    metadata:
+      labels:
+        app: app-lua
+    spec:
+      containers:
+      - name: app-lua
+        image: nginx:latest
+        ports:
+        - name: web
+          containerPort: 80
+        resources:
+          requests:
+            memory: 256Mi
+            cpu: 250m
+          limits:
+            memory: 256Mi
+            cpu: 250m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: myapp
+  name: service-lua
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  type: NodePort
+  selector:
+    app: app-lua
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: myapp
+  name: ingress-lua
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: lua.blendsecuritylab.com
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig":
+      { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+spec:
+  ingressClassName: alb
+  rules:
+    - host: lua.blendsecuritylab.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ssl-redirect
+                port:
+                  name: use-annotation
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: service-lua
+                port:
+                  number: 80
+
