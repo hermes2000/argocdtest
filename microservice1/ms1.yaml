@@ -53,7 +53,7 @@ metadata:
   namespace: myapp
   name: ingress-lua
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: lua.blendsecuritylab.com
+    external-dns.alpha.kubernetes.io/hostname: lua2.blendsecuritylab.com
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig":
@@ -62,7 +62,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: lua.blendsecuritylab.com
+    - host: lua2.blendsecuritylab.com
       http:
         paths:
           - path: /
