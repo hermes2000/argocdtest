@@ -1,0 +1,17 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app1
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: app1
+    name: in-cluster
+  project: default
+  source:
+    path: deployment/app1/overlays/prod
+    repoURL: https://github.com/hermes2000/argocdtest
+    targetRevision: HEAD
