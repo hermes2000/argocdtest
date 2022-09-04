@@ -8,7 +8,7 @@ metadata:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: kubecron1
+    namespace: kubecron
     name: in-cluster
   project: default
   source:
