@@ -9,7 +9,7 @@ metadata:
 spec:
   destination:
     namespace: kubecron
-    name: in-cluster
+    server: https://kubernetes.default.svc
   project: default
   source:
     path: deployment/kubecronjobs
