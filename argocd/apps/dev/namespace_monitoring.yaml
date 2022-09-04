@@ -2,21 +2,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: grafana
+  name: monitoring
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: monitoring
-    name: in-cluster
+    server: https://kubernetes.default.svc
   project: default
   source:
-    chart: grafana
-    helm:
-      values: |
-    repoURL: https://grafana.github.io/helm-charts
-    targetRevision: 6.35.0
+    path: deployment/monitoring
+    repoURL: https://github.com/hermes2000/argocdtest
+    targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true
