@@ -2,24 +2,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: myapp1
-  name: deployment-myapp1
+  namespace: myapp2
+  name: deployment-myapp2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app-myapp1
+      app: app-myapp2
   template:
     metadata:
       labels:
-        app: app-myapp1
+        app: app-myapp2
     spec:
       containers:
-      - name: app-myapp1
+      - name: app-myapp2
         image: nginx:latest
         ports:
         - name: web
-          containerPort: 80
+          containerPort: 8000
         resources:
           requests:
             memory: 256Mi

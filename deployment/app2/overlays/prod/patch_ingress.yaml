@@ -1,6 +1,6 @@
 - op: replace
   path: /spec/rules/0/host
-  value: prod-myapp1.blendsecuritylab.com
+  value: prod-myapp2.blendsecuritylab.com
 - op: replace
   path: /metadata/annotations/external-dns.alpha.kubernetes.io~1hostname
-  value: prod-myapp1.blendsecuritylab.com
+  value: prod-myapp2.blendsecuritylab.com
