@@ -14,6 +14,7 @@ spec:
       labels:
         app: app-app1
     spec:
+      serviceAccountName: sa-app1
       containers:
       - name: app-app1
         image: nginx:latest
