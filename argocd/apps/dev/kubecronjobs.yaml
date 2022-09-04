@@ -9,6 +9,7 @@ metadata:
 spec:
   destination:
     namespace: kubecron
+    name: in-cluster
   project: default
   source:
     path: deployment/kubecronjobs
