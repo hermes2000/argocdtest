@@ -2,20 +2,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: myapp2
-  name: deployment-myapp2
+  namespace: app2
+  name: deployment-app2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app-myapp2
+      app: app-app2
   template:
     metadata:
       labels:
-        app: app-myapp2
+        app: app-app2
     spec:
       containers:
-      - name: app-myapp2
+      - name: app-app2
         image: nginx:latest
         ports:
         - name: web
