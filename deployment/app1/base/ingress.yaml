@@ -2,10 +2,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  namespace: myapp1
-  name: ingress-myapp1
+  namespace: app1
+  name: ingress-app1
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: myapp1.blendsecuritylab.com
+    external-dns.alpha.kubernetes.io/hostname: app1.blendsecuritylab.com
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig":
@@ -14,7 +14,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: myapp1.blendsecuritylab.com
+    - host: app1.blendsecuritylab.com
       http:
         paths:
           - path: /
@@ -28,7 +28,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: service-myapp1
+                name: service-app1
                 port:
                   number: 80
 
