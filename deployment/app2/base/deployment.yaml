@@ -19,7 +19,7 @@ spec:
         image: nginx:latest
         ports:
         - name: web
-          containerPort: 8000
+          containerPort: 80
         resources:
           requests:
             memory: 256Mi
