@@ -19,7 +19,7 @@ spec:
         vault.hashicorp.com/ca-cert: "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
         vault.hashicorp.com/role: 'app1'
         vault.hashicorp.com/agent-inject-secret-api-token.raw: 'secret/data/services/app1/api_token'
-        vault.hashicorp.com/agent-inject-template-api-token: |
+        vault.hashicorp.com/agent-inject-template-api-token.test: |
           {{- with secret "secret/data/services/app1/api_token" -}}
           token={{ .Data.token }}
           {{- end -}}
