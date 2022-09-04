@@ -15,3 +15,7 @@ spec:
     path: argocd/apps/dev
     repoURL: https://github.com/hermes2000/argocdtest
     targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
