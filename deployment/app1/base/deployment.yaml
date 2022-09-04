@@ -15,9 +15,9 @@ spec:
         app: app-app1
       annotations:
         vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/ca-cert: "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
         vault.hashicorp.com/role: 'app1'
         vault.hashicorp.com/agent-inject-secret-api-token.json: 'secret/data/services/app1/api_token'
-        vault.hashicorp.com/ca-cert: "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
     spec:
       serviceAccountName: sa-app1
       containers:
