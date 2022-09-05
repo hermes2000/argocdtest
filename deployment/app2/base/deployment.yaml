@@ -30,7 +30,7 @@ spec:
       containers:
       - name: app-app2
         image: nginx:latest
-        command: ["/bin/sh", "-c"]
+        command: ["/bin/bash", "-c"]
         args: [ "for f in /vault/secrets/*.env; do source $f; done && nginx -g daemon off;" ]
         ports:
         - name: web
