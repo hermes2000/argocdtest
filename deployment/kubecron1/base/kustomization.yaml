@@ -4,3 +4,4 @@ kind: Kustomization
 
 resources:
   - cron.yaml
+  - sa.yaml
