@@ -1,0 +1,80 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: loki
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: monitoring
+    name: in-cluster
+  project: default
+  source:
+    chart: loki-distributed
+    helm:
+      values: |
+        serviceAccount:
+          create: true
+          name: loki
+          annotations: {"eks.amazonaws.com/role-arn": "arn:aws:iam::861581194401:role/secops-dev-loki"}
+
+        loki:
+          structuredConfig:
+            ingester:
+              max_transfer_retries: 0
+              chunk_idle_period: 1h
+              chunk_target_size: 1536000
+              max_chunk_age: 1h
+            storage_config:
+              aws:
+                s3: s3://us-east-1
+                bucketnames: secops-dev-loki
+              boltdb_shipper:
+                shared_store: s3
+            schema_config:
+              configs:
+                - from: 2022-06-21
+                  store: boltdb-shipper
+                  object_store: aws
+                  schema: v12
+                  index:
+                    prefix: loki_index_
+                    period: 24h
+
+        compactor:
+          enabled: true
+
+        distributor:
+          replicas: 2
+
+        ingester:
+          replicas: 2
+          persistence:
+            enabled: true
+            size: 1Gi
+            storageClass: gp2-encrypted
+
+        querier:
+          replicas: 2
+          persistence:
+            enabled: true
+            size: 1Gi
+            storageClass: gp2-encrypted
+
+        queryFrontend:
+          replicas: 2
+
+        gateway:
+          nginxConfig:
+            httpSnippet: |-
+                    client_max_body_size 100M;
+            serverSnippet: |-
+                    client_max_body_size 100M;
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 0.56.6
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
