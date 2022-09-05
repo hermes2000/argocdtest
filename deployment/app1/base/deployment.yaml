@@ -21,7 +21,7 @@ spec:
         vault.hashicorp.com/agent-inject-secret-api-token: 'secret/data/services/app1/api_token'
         vault.hashicorp.com/agent-inject-template-api-token: |
           {{- with secret "secret/data/services/app1/api_token" -}}
-          token={{ .Data }}
+          token={{ .Data.data.token }}
           {{- end -}}
     spec:
       serviceAccountName: sa-app1
