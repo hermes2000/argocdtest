@@ -28,6 +28,6 @@ spec:
           - name: hello
             image: busybox:1.28
             imagePullPolicy: IfNotPresent
-            command: ["/bin/bash", "-c"]
+            command: ["/bin/sh", "-c"]
             args: [ "for f in /vault/secrets/*.env; do source $f; done && echo secret from vault, injected into env variables: ${token}" ]
           restartPolicy: OnFailure
