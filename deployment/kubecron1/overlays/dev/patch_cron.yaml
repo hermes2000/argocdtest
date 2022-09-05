@@ -1,7 +1,4 @@
 - op: replace
-  path: /spec/jobTemplate/spec/template/spec/containers/0/command/2
-  value: date; echo Hello from the dev Kubernetes cluster
-- op: replace
   path: /spec/jobTemplate/spec/template/spec/containers/0/name
   value: hello-dev
 - op: replace
