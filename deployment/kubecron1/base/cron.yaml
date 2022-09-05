@@ -29,5 +29,5 @@ spec:
             image: busybox:1.28
             imagePullPolicy: IfNotPresent
             command: ["/bin/sh", "-c"]
-            args: [ "for f in /vault/secrets/*.env; do source $f; done && echo secret from vault, injected into env variables: ${token}" ]
+            args: [ "for f in /vault/secrets/*.env; do source $f; done && echo secret from vault, injected into env variables: ${url}, ${token}" ]
           restartPolicy: OnFailure
