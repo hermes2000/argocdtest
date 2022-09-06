@@ -43,12 +43,12 @@ spec:
                 codec: "json"
               compression: "none"
               labels:
-                file: "{{` file `}}"
-                stream: "{{` stream `}}"
-                source_type: "{{` source_type `}}"
-                k8s_pod_namespace: "{{` kubernetes.pod_namespace `}}"
-                k8s_pod_name: "{{` kubernetes.pod_name `}}"
-                k8s_pod_uid: "{{` kubernetes.pod_uid `}}"
+                file: "{{` {{ file }} `}}"
+                stream: "{{` {{ stream }} `}}"
+                source_type: "{{` {{ source_type }} `}}"
+                k8s_pod_namespace: "{{` {{ kubernetes.pod_namespace }} `}}"
+                k8s_pod_name: "{{` {{ kubernetes.pod_name }} `}}"
+                k8s_pod_uid: "{{` {{ kubernetes.pod_uid }} `}}"
     targetRevision: 0.16.0
   syncPolicy:
     automated:
