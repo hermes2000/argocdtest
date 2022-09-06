@@ -15,6 +15,11 @@ spec:
     chart: grafana
     helm:
       values: |
+        adminUser: jroot
+        persistence:
+          type: pvc
+          enabled: false
+          storageClassName: gp2-encrypted
         ingress:
           enabled: true
           ingressClassName: alb
