@@ -39,8 +39,8 @@ spec:
                 codec: "json"
               compression: "none"
               labels:
-                k8s_pod_namespace: "{{ kubernetes.pod_namespace }}"
-                k8s_pod_name: "{{ kubernetes.pod_name }}"
+                k8s_pod_namespace: "{{ k8s_all.pod_namespace }}"
+                k8s_pod_name: "{{ k8s_all.pod_name }}"
     repoURL: https://helm.vector.dev
     targetRevision: 0.16.0
   syncPolicy:
