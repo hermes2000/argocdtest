@@ -47,6 +47,18 @@ spec:
                   name: grafana
                   port:
                     number: 80
+
+        datasources: {}
+          datasources.yaml:
+            apiVersion: 1
+            datasources:
+            - name: Prometheus
+              type: prometheus
+              url: http://prometheus-server.monitoring.svc.cluster.local
+              isDefault: true
+            - name: Loki
+              type: loki
+              url: http://loki-loki-distributed-gateway
     repoURL: https://grafana.github.io/helm-charts
     targetRevision: 6.35.0
   syncPolicy:
