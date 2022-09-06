@@ -15,3 +15,7 @@ spec:
     path: deployment/app1/overlays/prod
     repoURL: https://github.com/hermes2000/argocdtest
     targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
