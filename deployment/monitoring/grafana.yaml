@@ -16,10 +16,12 @@ spec:
     helm:
       values: |
         adminUser: jroot
+
         persistence:
           type: pvc
           enabled: false
           storageClassName: gp2-encrypted
+
         ingress:
           enabled: true
           ingressClassName: alb
@@ -59,6 +61,24 @@ spec:
               - name: Loki
                 type: loki
                 url: http://loki-loki-distributed-gateway
+
+        grafana.ini:
+          server:
+            root_url: https://grafana.blendsecuritylab.com
+          auth.okta:
+            name: Okta
+            icon: okta
+            enabled: true
+            allow_sign_up: true
+            client_id: 0oa531kjo83vT7SEm1d7
+            client_secret: notthepassword
+            scopes: openid profile email groups
+            auth_url: blendsandbox.oktapreview.com/oauth2/v1/authorize
+            token_url: blendsandbox.oktapreview.com/oauth2/v1/token
+            api_url: blendsandbox.oktapreview.com/oauth2/v1/userinfo
+            allowed_domains: blend.com
+            allowed_groups: team-blend-infosec-operations
+            role_attribute_path: Admin
     repoURL: https://grafana.github.io/helm-charts
     targetRevision: 6.35.0
   syncPolicy:
