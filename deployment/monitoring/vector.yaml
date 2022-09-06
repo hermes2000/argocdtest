@@ -18,12 +18,7 @@ spec:
       values: |
         role: Agent
 
-        data_dir: "/vector-data-dir"        
 
-        api:
-          enabled: true
-          address: 127.0.0.1:8686
-          playground: false
 
         resources:
           requests:
@@ -34,6 +29,11 @@ spec:
             cpu: "6000m"
 
         customConfig:
+          data_dir: "/vector-data-dir"
+          api:
+            enabled: true
+            address: 127.0.0.1:8686
+            playground: false
           sources:
             k8s_all:
               type: "kubernetes_logs"
