@@ -13,17 +13,18 @@ spec:
   project: default
   source:
     chart: vector
+    repoURL: https://helm.vector.dev
     helm:
       values: |
         role: "Agent"
 
         resources:
           requests:
-            cpu: 200m
-            memory: 256Mi
+            memory: "64Mi"
+            cpu: "500m"
           limits:
-            cpu: 200m
-            memory: 256Mi
+            memory: "1024Mi"
+            cpu: "6000m"
 
         customConfig:
           sources:
@@ -45,7 +46,6 @@ spec:
                 k8s_pod_namespace: "{{` kubernetes.pod_namespace `}}"
                 k8s_pod_name: "{{` kubernetes.pod_name `}}"
                 k8s_pod_uid: "{{` kubernetes.pod_uid `}}"
-    repoURL: https://helm.vector.dev
     targetRevision: 0.16.0
   syncPolicy:
     automated:
