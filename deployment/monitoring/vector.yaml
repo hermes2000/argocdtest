@@ -18,6 +18,9 @@ spec:
       values: |
         role: "Agent"
 
+        persistence:
+          enabled: true
+
         resources:
           requests:
             memory: "64Mi"
