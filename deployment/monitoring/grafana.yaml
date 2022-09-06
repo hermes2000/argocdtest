@@ -71,14 +71,13 @@ spec:
             enabled: true
             allow_sign_up: true
             client_id: 0oa531kjo83vT7SEm1d7
-            client_secret: notthepassword
+            client_secret: notthesecret
             scopes: openid profile email groups
-            auth_url: blendsandbox.oktapreview.com/oauth2/v1/authorize
-            token_url: blendsandbox.oktapreview.com/oauth2/v1/token
-            api_url: blendsandbox.oktapreview.com/oauth2/v1/userinfo
+            auth_url: https://blendsandbox.oktapreview.com/oauth2/default/v1/authorize
+            token_url: https://blendsandbox.oktapreview.com/oauth2/default/v1/token
+            api_url: https://blendsandbox.oktapreview.com/oauth2/default/v1/userinfo
             allowed_domains: blend.com
-            allowed_groups: team-blend-infosec-operations
-            role_attribute_path: Admin
+            role_attribute_path: contains(groups[*], 'team-blend-infosec-operations') && 'Admin'
     repoURL: https://grafana.github.io/helm-charts
     targetRevision: 6.35.0
   syncPolicy:
