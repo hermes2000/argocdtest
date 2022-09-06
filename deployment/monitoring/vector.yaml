@@ -1,0 +1,49 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vector
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: monitoring
+    name: in-cluster
+  project: default
+  source:
+    chart: vector
+    helm:
+      values: |
+        role: "Agent"
+
+        resources:
+          requests:
+            cpu: 200m
+            memory: 256Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi
+
+        customConfig:
+          sources:
+            k8s_all:
+              type: "kubernetes_logs"
+          sinks:
+            loki:
+              type: "loki"
+              inputs:
+                - k8s_all
+              endpoint: "http://loki-loki-distributed-gateway"
+              encoding:
+                codec: "json"
+              compression: "none"
+              labels:
+                k8s_pod_namespace: "{{ kubernetes.pod_namespace }}"
+                k8s_pod_name: "{{ kubernetes.pod_name }}"
+    repoURL: https://helm.vector.dev
+    targetRevision: 0.16.0
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
