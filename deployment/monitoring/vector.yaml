@@ -18,10 +18,7 @@ spec:
       values: |
         role: Agent
 
-        persistence:
-          enabled: true
-          hostPath:
-            path: "/var/lib/vector"
+        data_dir: "/vector-data-dir"        
 
         resources:
           requests:
