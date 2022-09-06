@@ -48,7 +48,7 @@ spec:
                   port:
                     number: 80
 
-        datasources: {}
+        datasources:
           datasources.yaml:
             apiVersion: 1
             datasources:
