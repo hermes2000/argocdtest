@@ -17,6 +17,11 @@ spec:
     helm:
       values: |
         role: Agent
+        tolerations:
+          - key: "taint_for_vault"
+            operator: "Equal"
+            value: "true"
+            effect: "NoExecute"
 
         resources:
           requests:
