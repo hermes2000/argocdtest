@@ -16,10 +16,12 @@ spec:
     repoURL: https://helm.vector.dev
     helm:
       values: |
-        role: "Agent"
+        role: Agent
 
         persistence:
           enabled: true
+          hostPath:
+            path: "/var/lib/vector"
 
         resources:
           requests:
