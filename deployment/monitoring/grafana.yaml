@@ -62,6 +62,10 @@ spec:
                 type: loki
                 url: http://loki-loki-distributed-gateway
 
+        envFromSecrets:
+          - name: gf-auth-okta-client-secret
+            optional: false
+
         grafana.ini:
           server:
             root_url: https://grafana.blendsecuritylab.com
